@@ -352,3 +352,7 @@
 2019-02-14 17:55:55,016 pkl DEBUG loaded data from .papers_nous.pkl
 2019-02-14 18:21:17,476 pkl DEBUG loading data from .papers_nous.pkl
 2019-02-14 18:21:17,573 pkl DEBUG loaded data from .papers_nous.pkl
+2019-02-14 18:38:34,341 pkl DEBUG saving data to .refs_nous.pkl
+2019-02-14 18:38:35,721 pkl DEBUG saved data to .refs_nous.pkl
+2019-02-14 18:38:35,907 pkl DEBUG loading data from .papers_jphil.pkl
+2019-02-14 18:38:36,004 pkl DEBUG loaded data from .papers_jphil.pkl
