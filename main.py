@@ -105,7 +105,7 @@ class Downloader(object):
                 return func(*args, **kw)
             except WebFault:
                 self._log('got web fault')
-                if attempt == 5:
+                if attempt >= 3:
                     self.reconnect()
                 if attempt == 6:
                     raise
