@@ -13,4 +13,4 @@ def load(name, default = None):
     return default
 
 def _format_filename(name):
-    return '.%s.pkl' % name
+    return 'data/.%s.pkl' % name
