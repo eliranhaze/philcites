@@ -91,7 +91,7 @@ class Downloader(object):
             ref['by_uid'] = paper['uid']
             ref['by_year'] = paper['year']
             ref['author'] = normalize_author(ref['author'])
-            ref['title'] = normalize_title(ref['author'])
+            ref['title'] = normalize_title(ref['title'])
             refs.append(ref)
         return refs
 
