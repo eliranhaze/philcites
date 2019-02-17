@@ -1,6 +1,8 @@
 import glob
 import re
 
+from difflib import SequenceMatcher
+
 from downloader import Downloader
 from names import normalize_author, normalize_title, STDNAMES
 from utils import pkl
@@ -11,9 +13,7 @@ def download_all():
     journal_files = glob.glob('%s/.papers_*.pkl' % DATA_FOLDER)
     for jf in journal_files:
         name = re.findall('\.papers_(.*?)\.pkl', jf)[0]
-        papers = pkl.load('papers_%s' % name)
-        refs = Downloader().download_papers_refs(papers)
-        pkl.save(refs, 'refs_%s' % name)
+        download_refs(name)
 
 def download_refs(jname, save_every = 100):
     papers = pkl.load('papers_%s' % jname)
@@ -49,3 +49,7 @@ def renormalize(full = False):
 def chunks(l, n):
     n = max(1, n)
     return (l[i:i+n] for i in xrange(0, len(l), n))
+
+def similarity(a, b):
+    """" return degree (0-1) of similarity between two strings """
+    return SequenceMatcher(None, a, b).ratio()
