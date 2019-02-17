@@ -20,7 +20,7 @@ def download_refs(jname, save_every = 100):
     refs = pkl.load('refs_%s' % jname, [])
     existing_uids = {r['by_uid'] for r in refs}
     papers_to_download = [p for p in papers if p['uid'] not in existing_uids]
-    print 'downloading %d out of %d papers' % (len(papers_to_download), len(papers))
+    print 'downloading %s: %d out of %d papers' % (jname, len(papers_to_download), len(papers))
     d = Downloader()
     for i, chunk in enumerate(chunks(papers_to_download, save_every)):
         print ' -- chunk #%d -- ' % (i + 1)
