@@ -4,7 +4,7 @@ from wos import WosClient
 import sys
 import time
 
-from names import normalize
+from names import normalize_author, normalize_title
 from parse import parse_journal, parse_ref
 
 class Downloader(object):
@@ -90,7 +90,8 @@ class Downloader(object):
             ref = parse_ref(ref)
             ref['by_uid'] = paper['uid']
             ref['by_year'] = paper['year']
-            ref['author'] = normalize(ref['author'])
+            ref['author'] = normalize_author(ref['author'])
+            ref['title'] = normalize_title(ref['author'])
             refs.append(ref)
         return refs
 

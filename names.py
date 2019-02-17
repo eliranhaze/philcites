@@ -1,6 +1,6 @@
 import re
 
-def normalize(name):
+def normalize_author(name):
     """
     transform names to a canonical form of last name and first letter of first name,
     with no punctuation, capitalization, or redundant spaces
@@ -26,6 +26,9 @@ def normalize(name):
 
     # replace by known name if possible
     return STDNAMES.get(name, name)
+
+def normalize_title(title):
+    return title.lower()
 
 STDNAMES = {
 'anscombe': 'anscombe gem',

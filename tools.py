@@ -1,12 +1,14 @@
 import glob
 import re
 
-from main import Downloader
-from names import normalize, STDNAMES
+from downloader import Downloader
+from names import normalize_author, normalize_title, STDNAMES
 from utils import pkl
 
+DATA_FOLDER = pkl.DATA_FOLDER
+
 def download_all():
-    journal_files = glob.glob('.papers_*.pkl')
+    journal_files = glob.glob('%s/.papers_*.pkl' % DATA_FOLDER)
     for jf in journal_files:
         name = re.findall('\.papers_(.*?)\.pkl', jf)[0]
         papers = pkl.load('papers_%s' % name)
@@ -26,7 +28,7 @@ def download_refs(jname, save_every = 100):
         pkl.save(refs, 'refs_%s' % jname)
 
 def update_refs_data(update_func, *args, **kw):
-    ref_files = glob.glob('.refs_*.pkl')
+    ref_files = glob.glob('%s/.refs_*.pkl' % DATA_FOLDER)
     for rf in ref_files:
         name = re.findall('\.(.*?)\.pkl', rf)[0]
         print 'loading %s' % name
@@ -40,7 +42,8 @@ def renormalize(refs, full = False):
     def _update(refs, full):
         for r in refs:
             author = r['author']
-            r['author'] = normalize(author) if full else STDNAMES.get(author, author)
+            r['author'] = normalize_author(author) if full else STDNAMES.get(author, author)
+            r['title'] = normalize_title(r['title'])
     update_refs_data(_update, full = full)
 
 def chunks(l, n):
