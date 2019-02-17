@@ -86,6 +86,9 @@ class Downloader(object):
         else:
             # when downloading using citedReferences
             result_refs = getattr(result, 'references', [])
+        if not result_refs:
+            # HACK: create a fake ref so that it remains known that this paper has no refs
+            result_refs = [{'author':'', 'title':''}]
         for ref in result_refs:
             ref = parse_ref(ref)
             ref['by_uid'] = paper['uid']
