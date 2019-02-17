@@ -24,8 +24,10 @@ def download_refs(jname, save_every = 100):
     d = Downloader()
     for i, chunk in enumerate(chunks(papers_to_download, save_every)):
         print ' -- chunk #%d -- ' % (i + 1)
-        refs.extend(d.download_papers_refs(chunk))
-        pkl.save(refs, 'refs_%s' % jname)
+        chunk_refs = d.download_papers_refs(chunk)
+        if chunk_refs: # avoid writing to file unnecessarily
+            refs.extend(chunk_refs)
+            pkl.save(refs, 'refs_%s' % jname)
 
 def update_refs_data(update_func, *args, **kw):
     ref_files = glob.glob('%s/.refs_*.pkl' % DATA_FOLDER)
