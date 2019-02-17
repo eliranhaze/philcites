@@ -9,7 +9,7 @@ from parse import parse_journal, parse_ref
 
 class Downloader(object):
 
-    _MIN_REQ_DELAY = .5 # sec
+    _MIN_REQ_DELAY = .501 # sec (limit is 2/sec)
     _BATCH_SIZE = 100
 
     def __init__(self):
