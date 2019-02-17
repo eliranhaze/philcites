@@ -9,11 +9,11 @@ from utils import pkl
 
 DATA_FOLDER = pkl.DATA_FOLDER
 
-def download_all():
+def download_all(save_every = 100):
     journal_files = glob.glob('%s/.papers_*.pkl' % DATA_FOLDER)
     for jf in journal_files:
         name = re.findall('\.papers_(.*?)\.pkl', jf)[0]
-        download_refs(name)
+        download_refs(name, save_every)
 
 def download_refs(jname, save_every = 100):
     papers = pkl.load('papers_%s' % jname)
