@@ -34,9 +34,17 @@ def update_refs_data(update_func, *args, **kw):
         print 'loading %s' % name
         refs = pkl.load(name)
         print 'updating %s' % name
-        update_func(refs, *args, **kw)
-        print 'saving %s' % name
-        pkl.save(refs, name)
+        changed = update_func(refs, *args, **kw)
+        if changed:
+            print 'saving %s' % name
+            pkl.save(refs, name)
+
+def update_refs_data_all():
+    import updates
+    for func in dir(updates):
+        if func.startswith('update_'):
+            print ' -- running %s -- ' % func
+            update_refs_data(getattr(updates, func))
 
 def renormalize(full = False):
     def _update(refs, full):

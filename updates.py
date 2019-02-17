@@ -2,15 +2,18 @@
 specific data update functions
 """
 
-
 def update_austin(refs):
+    changed = False
     for r in refs:
         year = int(r['year'])
         if r['author'] == 'austin j' and year > 1900 and 'juris' not in r['title'].lower():
             print 'updating', r['title'], year
             r['author'] = 'austin jl'
+            changed = True
+    return changed
 
 def update_kripke(refs):
+    changed = False
     for r in refs:
         if r['author'] == 'kripke sa':
             title = r['title']
@@ -27,8 +30,11 @@ def update_kripke(refs):
                 print 'updating %s %s' % (r['title'], r['year'])
                 r['year'] = year
                 r['title'] = title
+                changed = True
+    return changed
 
-def update_wittgensstein(refs):
+def update_wittgenstein(refs):
+    changed = False
     for r in refs:
         if r['author'] == 'wittgenstein l':
             title = r['title']
@@ -51,4 +57,6 @@ def update_wittgensstein(refs):
                 print 'updating %s %s' % (r['title'], r['year'])
                 r['year'] = year
                 r['title'] = title
+                changed = True
+    return changed
 
