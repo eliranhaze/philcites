@@ -43,10 +43,11 @@ class Downloader(object):
 
     def download_papers_refs(self, papers):
         refs = []
+        all_len = len(papers)
+        # filter to skip book reviews, corrections, etc
+        papers = [p for p in papers if p['doctype'].lower() == 'article']
+        self._log('downloading %d/%d articles' % (len(papers), all_len))
         for i, p in enumerate(papers):
-            if p['doctype'].lower() != 'article':
-                # skip book reviews, corrections, etc
-                continue
             self._log('%d/%d' % (i + 1, len(papers)))
             refs.extend(self.download_refs(p))
         return refs
