@@ -1,6 +1,8 @@
 import cPickle as cpkl
 import os
 
+DATA_FOLDER = 'data'
+
 def save(data, name):
     filename = _format_filename(name)
     cpkl.dump(data, open(filename, 'wb'))
@@ -13,4 +15,4 @@ def load(name, default = None):
     return default
 
 def _format_filename(name):
-    return 'data/.%s.pkl' % name
+    return '%s/.%s.pkl' % (DATA_FOLDER, name)
