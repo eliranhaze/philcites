@@ -11,17 +11,19 @@ DATA_FOLDER = pkl.DATA_FOLDER
 
 def download_all(save_every = 100):
     journal_files = glob.glob('%s/.papers_*.pkl' % DATA_FOLDER)
+    # init downloader here to avoid reconnecting too often
+    downloader = Downloader()
     for jf in journal_files:
         name = re.findall('\.papers_(.*?)\.pkl', jf)[0]
-        download_refs(name, save_every)
+        download_refs(name, save_every = save_every, downloader = downloader)
 
-def download_refs(jname, save_every = 100):
+def download_refs(jname, save_every = 100, downloader = None):
     papers = pkl.load('papers_%s' % jname)
     refs = pkl.load('refs_%s' % jname, [])
     existing_uids = {r['by_uid'] for r in refs}
     papers_to_download = [p for p in papers if p['uid'] not in existing_uids]
     print 'downloading %s: %d out of %d papers' % (jname, len(papers_to_download), len(papers))
-    d = Downloader()
+    d = downloader if downloader else Downloader()
     for i, chunk in enumerate(chunks(papers_to_download, save_every)):
         print ' -- chunk #%d -- ' % (i + 1)
         chunk_refs = d.download_papers_refs(chunk)
