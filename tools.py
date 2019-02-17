@@ -38,7 +38,7 @@ def update_refs_data(update_func, *args, **kw):
         print 'saving %s' % name
         pkl.save(refs, name)
 
-def renormalize(refs, full = False):
+def renormalize(full = False):
     def _update(refs, full):
         for r in refs:
             author = r['author']
