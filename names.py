@@ -30,6 +30,12 @@ def normalize_author(name):
 def normalize_title(title):
     return title.lower()
 
+def short_title(title):
+    title = re.sub('\W+', ' ', title)
+    words = title.split()
+    title = words[0][:7] + ' ' + ' '.join(w[:3] for w in words[1:5])
+    return title
+
 STDNAMES = {
 'anscombe': 'anscombe gem',
 'anscombe e': 'anscombe gem',
