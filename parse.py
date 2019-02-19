@@ -12,6 +12,7 @@ def parse_journal(journal_xml):
             title = rec.find('title', attrs={'type':'item'}).text
             author = rec.find('name', attrs={'role':'author'}).find('full_name').text
             year = rec.find('pub_info').attrs['pubyear']
+            keywords = [k.text for k in rec.find_all('keyword')]
             results.append(dict(
                 uid = uid,
                 journal = journal,
@@ -19,6 +20,7 @@ def parse_journal(journal_xml):
                 title = title,
                 author = author,
                 year = year,
+                keywords = keywords,
             ))
         except:
             print 'failed to parse %s' % uid
