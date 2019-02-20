@@ -266,6 +266,7 @@ STDNAMES = {
 'putnam': 'putnam h',
 'quine': 'quine wvo',
 'quines': 'quine wvo',
+'quine vwo': 'quine wvo',
 'quine wv': 'quine wvo',
 'quine w': 'quine wvo',
 'quine v': 'quine wvo',
