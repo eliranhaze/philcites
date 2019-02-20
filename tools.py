@@ -8,6 +8,7 @@ from names import normalize_author, normalize_title, STDNAMES
 from utils import pkl
 
 DATA_FOLDER = pkl.DATA_FOLDER
+TOP_JOURNALS = ['phil_review', 'mind', 'nous', 'jphil', 'ajp', 'phil_stud', 'ppr']
 
 def download_all(save_every = 100):
     journal_files = glob.glob('%s/.papers_*.pkl' % DATA_FOLDER)
@@ -57,6 +58,12 @@ def renormalize(full = False):
             r['author'] = normalize_author(author) if full else STDNAMES.get(author, author)
             r['title'] = normalize_title(r['title'])
     update_refs_data(_update, full = full)
+
+def load_refs(journals = TOP_JOURNALS):
+    refs = []
+    for j in journals:
+        refs.extend(pkl.load('refs_%s' % j))
+    return refs
 
 def chunks(l, n):
     n = max(1, n)
