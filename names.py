@@ -196,6 +196,8 @@ STDNAMES = {
 'korsgaard cn': 'korsgaard cm',
 'korsgaard christine m': 'korsgaard cm',
 'kripkes': 'kripke sa',
+'kripke a': 'kripke sa',
+'kripke ks': 'kripke sa',
 'kripke': 'kripke sa',
 'kripke s': 'kripke sa',
 'kripke saul a': 'kripke sa',
