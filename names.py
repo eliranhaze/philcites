@@ -212,6 +212,7 @@ STDNAMES = {
 'leibniz gottfried wilhelm v': 'leibniz gwv',
 'leibniz gottfried w': 'leibniz gwv',
 'lewis clarence i': 'lewis ci',
+'lewis': 'lewis dk', # confirmed by manually going over the items: almost all 'lewis' references are to david lewis works
 'lewis d': 'lewis dk',
 'lewis david k': 'lewis dk',
 'locke': 'locke j',
