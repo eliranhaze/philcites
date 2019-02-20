@@ -55,8 +55,13 @@ def renormalize(full = False):
     def _update(refs, full):
         for r in refs:
             author = r['author']
-            r['author'] = normalize_author(author) if full else STDNAMES.get(author, author)
-            r['title'] = normalize_title(r['title'])
+            author = normalize_author(author) if full else STDNAMES.get(author, author)
+            title = normalize_title(r['title'])
+            if author != r['author'] or title != r['title']:
+                r['author'] = author
+                r['title'] = title
+                return True
+        return False
     update_refs_data(_update, full = full)
 
 def load_refs(journals = TOP_JOURNALS):
