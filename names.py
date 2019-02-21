@@ -32,7 +32,7 @@ def normalize_title(title):
         return title
     title = title.lower()
     title = re.sub('\(.*?\)', '', title) # remove anything in parentheses
-    title = re.sub('\W+', ' ', title) # remove punctuation
+    title = re.sub('[^a-zA-Z0-9_-]+', ' ', title) # remove punctuation
     title = title.replace('<it>', '').replace('</it>', '') # remove italics tags
     title = re.sub('^the ', '', title) # remove 'the' prefix
     title = re.sub(' +',' ', title) # remove double spaces
