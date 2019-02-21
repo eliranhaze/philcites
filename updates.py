@@ -78,7 +78,7 @@ def update_williamson(refs):
             title = 'knowledge and its limits'
         elif 'philosophy of philosophy' in title:
             year = '2007'
-            title = 'the philosophy of philosophy'
+            title = 'philosophy of philosophy'
         elif title.startswith('vagueness'):
             year = '1994'
             title = 'vagueness'
