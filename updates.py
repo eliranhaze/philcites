@@ -107,6 +107,22 @@ def update_lewis(refs):
         r['title'] = title
     return _update(refs, enter_condition, update_func)
 
+def update_rawls(refs):
+    def enter_condition(r):
+        return r['author'] == 'rawls jb'
+    def update_func(r):
+        year = r['year']
+        title = r['title']
+        if 'theory' in title and 'justice' in title:
+            year = '1971'
+            title = 'a theory of justice'
+        elif 'political' in title and 'liberalism' in title:
+            year = '1993'
+            title = 'political liberalism'
+        r['year'] = year
+        r['title'] = title
+    return _update(refs, enter_condition, update_func)
+
 def update_quine(refs):
     def enter_condition(r):
         return r['author'] == 'quine wvo'
@@ -143,6 +159,9 @@ def update_quine(refs):
         r['year'] = year
         r['title'] = title
     return _update(refs, enter_condition, update_func)
+
+def update_journal_names(refs):
+    pass
 
 def _update(refs, enter_condition, update_func):
     changed = False
