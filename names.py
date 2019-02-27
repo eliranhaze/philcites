@@ -415,6 +415,7 @@ STDNAMES = {
 'velleman james d': 'velleman jd',
 'velleman': 'velleman jd',
 'david velleman j': 'velleman jd',
+'vlastos': 'vlastos g',
 'williams b': 'williams ba',
 'williams bernard a': 'williams ba',
 'williams bernard ao': 'williams ba',
